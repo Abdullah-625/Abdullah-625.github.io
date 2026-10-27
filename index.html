@@ -1,45 +1,202 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abdullah's Website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#152c49">
+  <meta name="description" content="A gentle, practical ADHD wellness guide with habits for everyday life.">
+  <title>Mindful Me — Better Habits, Brighter Days</title>
   <style>
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      background: #edf4f1;
-      color: #26352f;
-      text-align: center;
+    :root {
+      --navy:#152c49; --navy2:#203e60; --ink:#193451; --muted:#536d8a;
+      --paper:#ffffff; --blue-bg:#eef6ff; --pink-bg:#fff3f4; --green-bg:#effaf5;
+      --blue:#d7eaff; --pink:#ffd7dc; --green:#c9f0df; --line:#e6edf4;
+      --shadow:0 7px 24px rgba(30,57,83,.08);
     }
-
-    .card {
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 35px 20px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px #0001;
-    }
-
-    h1 { color: #167451; }
-
-    p { line-height: 1.7; }
-
-    a { color: #167451; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:#f7f9fc; line-height:1.6; }
+    body.dark { --paper:#1d2b3b; --ink:#edf4ff; --muted:#b6c6d8; --blue-bg:#1c3148; --pink-bg:#392a35; --green-bg:#20382f; --line:#35485c; --shadow:0 7px 24px rgba(0,0,0,.18); background:#142131; }
+    a { color:inherit; }
+    .site-header { background:var(--navy); color:#fff; position:sticky; top:0; z-index:10; box-shadow:0 3px 14px #0d21372a; }
+    .nav { max-width:1240px; margin:auto; min-height:70px; padding:12px 24px; display:flex; align-items:center; gap:24px; }
+    .brand { display:flex; align-items:center; gap:11px; text-decoration:none; margin-right:auto; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid #88b9e7; border-radius:14px; font-size:23px; background:#ffffff12; }
+    .brand strong { display:block; font-size:18px; line-height:1.2; }
+    .brand small { display:block; color:#c5d7e9; font-size:12px; }
+    .nav-links { display:flex; gap:24px; align-items:center; }
+    .nav-links a { text-decoration:none; font-size:14px; color:#e3edf8; }
+    .nav-links a:hover { color:#9bd4ff; }
+    .icon-button,.project-link { border:1px solid #6e8aa6; background:transparent; color:white; border-radius:12px; padding:9px 12px; cursor:pointer; font:inherit; text-decoration:none; }
+    .project-link { font-size:13px; white-space:nowrap; }
+    .icon-button:hover,.project-link:hover { background:#ffffff15; }
+    main { max-width:1240px; margin:auto; padding:0 20px 28px; }
+    .hero { margin:20px 0 16px; padding:38px clamp(22px,4vw,52px); border-radius:24px; background:linear-gradient(115deg,#edf6ff 0%,#f4f8ff 55%,#dcecf9 100%); display:grid; grid-template-columns:1.05fr .95fr; gap:20px; align-items:center; overflow:hidden; min-height:310px; }
+    body.dark .hero { background:linear-gradient(115deg,#20364e,#243a50 60%,#1a3045); }
+    .eyebrow { color:#3475a8; font-weight:800; font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+    body.dark .eyebrow { color:#9bcfff; }
+    h1 { font-size:clamp(34px,4vw,54px); line-height:1.08; letter-spacing:-.04em; margin:12px 0 16px; max-width:620px; }
+    .hero p { max-width:570px; color:var(--muted); font-size:17px; margin:0 0 22px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:12px; background:#1d4d78; color:white; text-decoration:none; font-weight:700; font-size:14px; border:1px solid #1d4d78; cursor:pointer; }
+    .btn.secondary { background:transparent; color:var(--ink); border-color:#b8cadd; }
+    .hero-art { min-height:230px; display:grid; place-items:center; position:relative; }
+    .desk-scene { width:min(100%,430px); min-height:230px; position:relative; display:flex; justify-content:center; align-items:end; }
+    .sun { position:absolute; width:180px; height:180px; border-radius:50%; background:#cbe7fb; top:5px; right:40px; }
+    .plant { position:absolute; left:12px; bottom:20px; font-size:66px; filter:drop-shadow(0 5px 2px #173b2918); }
+    .laptop { position:absolute; left:72px; bottom:12px; font-size:78px; z-index:2; transform:rotate(-5deg); }
+    .person { z-index:3; font-size:120px; line-height:1; position:relative; bottom:8px; filter:drop-shadow(0 8px 4px #173b2920); }
+    .books { position:absolute; right:0; bottom:18px; font-size:54px; }
+    .note { position:absolute; top:17px; left:30%; background:#fff4c9; color:#695b35; padding:12px 14px; border-radius:6px; box-shadow:var(--shadow); transform:rotate(-5deg); font-weight:800; font-size:13px; text-align:center; z-index:4; }
+    .check-note { position:absolute; top:22px; right:0; background:#fff; color:#345b80; padding:10px 14px; border-radius:10px; box-shadow:var(--shadow); font-size:12px; line-height:1.9; z-index:4; }
+    .section { border-radius:20px; padding:22px; margin:16px 0; }
+    .avoid { background:var(--pink-bg); border:1px solid #f8e1e4; }
+    .habits { background:var(--green-bg); border:1px solid #dcefe6; }
+    .section-heading { display:flex; align-items:flex-start; gap:14px; margin:0 0 18px; }
+    .section-icon { flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:50%; font-size:24px; color:white; font-weight:900; }
+    .avoid .section-icon { background:#f15e72; }
+    .habits .section-icon { background:#12a779; }
+    h2 { font-size:clamp(23px,2.6vw,30px); line-height:1.2; margin:2px 0 4px; letter-spacing:-.025em; }
+    .section-heading p { color:var(--muted); margin:0; font-size:14px; }
+    .cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:13px; }
+    .habits .cards { grid-template-columns:repeat(7,minmax(0,1fr)); }
+    .habit-card { background:var(--paper); border:1px solid var(--line); border-radius:13px; padding:13px; box-shadow:0 3px 9px #243e5510; min-width:0; transition:transform .18s ease,box-shadow .18s ease; }
+    .habit-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
+    .card-top { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+    .number { display:grid; place-items:center; width:26px; height:26px; border-radius:50%; font-weight:800; font-size:12px; flex:0 0 26px; }
+    .avoid .number { background:#ffd2d7; color:#793b48; }
+    .habits .number { background:#cdeaff; color:#234e75; }
+    .illustration { height:100px; display:grid; place-items:center; font-size:62px; background:radial-gradient(ellipse at center,#f1f6ff 0%,transparent 70%); margin:0 -3px 8px; }
+    .avoid .illustration { background:radial-gradient(ellipse at center,#ffe4e8 0%,transparent 70%); }
+    .habits .illustration { height:75px; font-size:43px; background:radial-gradient(ellipse at center,#e2f7ed 0%,transparent 70%); }
+    .habit-card h3 { font-size:14px; line-height:1.3; margin:7px 0 9px; }
+    .habit-card p { font-size:12.5px; line-height:1.5; color:var(--muted); margin:0; }
+    .habits .habit-card { padding:11px; }
+    .habits .habit-card h3 { font-size:12.5px; }
+    .habits .habit-card p { font-size:11.5px; }
+    .gentle-note { display:flex; align-items:flex-start; gap:12px; background:var(--paper); border:1px solid var(--line); padding:15px 18px; border-radius:15px; color:var(--muted); font-size:13px; margin-top:16px; }
+    .gentle-note strong { color:var(--ink); }
+    footer { background:var(--navy); color:white; }
+    .footer-inner { max-width:1240px; margin:auto; padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .footer-brand { display:flex; align-items:center; gap:10px; }
+    .footer-brand .brand-mark { width:36px; height:36px; }
+    .footer-brand strong { display:block; }
+    .footer-brand small,.copyright { display:block; color:#bfd0e2; font-size:11px; }
+    .quote { text-align:center; font-weight:700; }
+    .quote small { display:block; font-weight:400; color:#c2d1e0; }
+    .footer-links { display:flex; gap:12px; font-size:13px; }
+    .footer-links a { color:#d8e8f7; text-decoration:none; }
+    .copyright { text-align:right; }
+    .back-top { position:fixed; right:18px; bottom:18px; border:0; border-radius:50%; width:44px; height:44px; background:#1d4d78; color:#fff; font-size:20px; box-shadow:var(--shadow); cursor:pointer; display:none; }
+    .back-top.show { display:block; }
+    @media (max-width:1050px) { .cards { grid-template-columns:repeat(3,minmax(0,1fr)); } .habits .cards { grid-template-columns:repeat(4,minmax(0,1fr)); } .nav-links { gap:14px; } }
+    @media (max-width:720px) { .nav { flex-wrap:wrap; gap:12px; padding:12px 16px; } .nav-links { order:3; width:100%; justify-content:space-between; } .hero { grid-template-columns:1fr; padding:28px 22px 8px; } .hero-art { min-height:210px; } .desk-scene { transform:scale(.9); } main { padding:0 12px 22px; } .section { padding:15px; } .cards,.habits .cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .footer-inner { flex-wrap:wrap; justify-content:center; text-align:center; } .copyright { text-align:center; width:100%; } .quote { order:3; width:100%; } }
+    @media (max-width:390px) { .cards,.habits .cards { grid-template-columns:1fr; } .habit-card { padding:16px; } .illustration,.habits .illustration { height:80px; } .project-link { padding:8px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Hello, World! 👋</h1>
-    <h2>I'm Abdullah</h2>
-    <p>Welcome to my first website!</p>
-    <p>I'm learning web development with GitHub Pages.</p>
-    <a href="https://github.com/Abdullah-625">
-      Visit my GitHub profile
-    </a>
-  </div>
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Mindful Me home">
+        <span class="brand-mark" aria-hidden="true">🧠</span>
+        <span><strong>Mindful Me</strong><small>Better Habits · Brighter Days</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#top">Home</a><a href="#avoid">Things to Avoid</a><a href="#habits">Healthy Habits</a><a href="#note">A Gentle Reminder</a>
+      </div>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark theme" title="Toggle theme">☼</button>
+      <a class="project-link" href="https://github.com/Abdullah-625" target="_blank" rel="noopener noreferrer">My Projects ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">A gentle ADHD wellness guide</div>
+        <h1 id="hero-title">Small Changes,<br>Big Impact.</h1>
+        <p>Living with ADHD can be challenging, but small, supportive habits can make everyday life feel more manageable. Explore a few things to watch out for and practical habits to try—one step at a time.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#habits">Explore healthy habits ↓</a>
+          <a class="btn secondary" href="#avoid">What to watch for</a>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Illustration of a person thinking at a desk with a laptop, plant and books">
+        <div class="desk-scene">
+          <div class="sun"></div><div class="note">Better habits<br>↓<br>Brighter days</div>
+          <div class="check-note">✓ Focus<br>✓ Energy<br>✓ Progress<br>✓ You’ve got this!</div>
+          <div class="plant" aria-hidden="true">🪴</div><div class="laptop" aria-hidden="true">💻</div>
+          <div class="person" aria-hidden="true">🧑🏻‍💻</div><div class="books" aria-hidden="true">📚</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section avoid" id="avoid" aria-labelledby="avoid-title">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">!</span>
+        <div><h2 id="avoid-title">Things to Avoid or Limit</h2><p>These factors may make focus and daily routines harder for some people.</p></div>
+      </div>
+      <div class="cards">
+        <article class="habit-card"><div class="card-top"><span class="number">1</span></div><div class="illustration" aria-hidden="true">🛋️</div><h3>Inactivity</h3><p>Regular movement and exercise may support attention, mood, and overall well-being.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">2</span></div><div class="illustration" aria-hidden="true">📱</div><h3>Excessive Screen Time</h3><p>Endless scrolling and notifications can interrupt focus. Try setting boundaries that work for you.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">3</span></div><div class="illustration" aria-hidden="true">🍩</div><h3>Lots of Sugary, Refined Foods</h3><p>A balanced eating pattern can support steady energy. Food affects everyone differently.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">4</span></div><div class="illustration" aria-hidden="true">🗃️</div><h3>Cluttered Environments</h3><p>A simple, organized workspace can reduce visual distractions and make tasks easier to start.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">5</span></div><div class="illustration" aria-hidden="true">😴</div><h3>Lack of Sleep</h3><p>Too little sleep can make attention, mood, and daily functioning more difficult.</p></article>
+      </div>
+    </section>
+
+    <section class="section habits" id="habits" aria-labelledby="habits-title">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">✓</span>
+        <div><h2 id="habits-title">Build These Habits</h2><p>You don't have to change everything at once. Pick one small thing and begin there.</p></div>
+      </div>
+      <div class="cards">
+        <article class="habit-card"><div class="card-top"><span class="number">1</span></div><div class="illustration" aria-hidden="true">🗓️</div><h3>Keep a Consistent Routine</h3><p>A familiar daily rhythm can make the day feel more predictable.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">2</span></div><div class="illustration" aria-hidden="true">📝</div><h3>Break Tasks into Steps</h3><p>Turn a big task into small actions you can begin right now.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">3</span></div><div class="illustration" aria-hidden="true">📆</div><h3>Use a Planner or Calendar</h3><p>Write down appointments, deadlines, and reminders instead of holding them in your head.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">4</span></div><div class="illustration" aria-hidden="true">🪴</div><h3>Organize Your Space</h3><p>Give everyday items a home and clear just one small area at a time.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">5</span></div><div class="illustration" aria-hidden="true">👟</div><h3>Move Your Body</h3><p>Walking, dancing, sports, or stretching all count. Choose movement you enjoy.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">6</span></div><div class="illustration" aria-hidden="true">🥗</div><h3>Eat a Balanced Diet</h3><p>Include a variety of foods, such as vegetables, fruit, protein, and whole grains.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">7</span></div><div class="illustration" aria-hidden="true">☕</div><h3>Be Mindful of Sugar & Caffeine</h3><p>Notice how they affect your energy and sleep; avoid relying on caffeine to replace rest.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">8</span></div><div class="illustration" aria-hidden="true">🛏️</div><h3>Keep a Sleep Schedule</h3><p>A regular bedtime and wake-up time can help support good sleep.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">9</span></div><div class="illustration" aria-hidden="true">🌙</div><h3>Create a Calming Bedtime Routine</h3><p>Try reading, quiet music, or another relaxing activity before bed.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">10</span></div><div class="illustration" aria-hidden="true">🧘</div><h3>Try Mindfulness</h3><p>Gentle breathing or meditation may help some people manage stress and refocus.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">11</span></div><div class="illustration" aria-hidden="true">🌿</div><h3>Manage Stress</h3><p>Make space for hobbies, breaks, supportive conversations, and professional help when needed.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">12</span></div><div class="illustration" aria-hidden="true">🫂</div><h3>Seek Support</h3><p>Trusted friends, family, support groups, or a qualified professional can help.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">13</span></div><div class="illustration" aria-hidden="true">🎯</div><h3>Set Realistic Goals</h3><p>Choose a small, clear next step and count progress rather than perfection.</p></article>
+        <article class="habit-card"><div class="card-top"><span class="number">14</span></div><div class="illustration" aria-hidden="true">⏱️</div><h3>Use Timers & Alarms</h3><p>Try a short timer to get started or reminders to switch tasks and take breaks.</p></article>
+      </div>
+    </section>
+
+    <aside class="gentle-note" id="note">
+      <span aria-hidden="true" style="font-size:24px">💙</span>
+      <div><strong>A gentle reminder</strong><br>This page shares general wellness ideas, not medical advice. ADHD affects people differently, and lifestyle habits are not a substitute for professional assessment or treatment. You don't need to do everything perfectly—start with what feels manageable.</div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="brand-mark" aria-hidden="true">🧠</span><span><strong>Mindful Me</strong><small>Better Habits · Brighter Days</small></span></div>
+      <div class="quote">“Progress, not perfection.”<small>Keep going. One small step at a time.</small></div>
+      <div class="footer-links"><a href="#top">Back to top ↑</a><a href="https://github.com/Abdullah-625" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+      <div class="copyright">A personal learning project<br>Made with care · 2026</div>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top">↑</button>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('mindful-me-theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    themeToggle.textContent = document.body.classList.contains('dark') ? '☾' : '☼';
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      themeToggle.textContent = isDark ? '☾' : '☼';
+      localStorage.setItem('mindful-me-theme', isDark ? 'dark' : 'light');
+    });
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 450), {passive:true});
+    backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+  </script>
 </body>
 </html>
